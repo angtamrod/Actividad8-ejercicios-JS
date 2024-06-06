@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- quitar "controls" si no desean ver la barra de progreso -->
+<audio src="" autoplay controls></audio>
+
+<!-- barra de progreso -->
+<div class="audio-bar">
+<div class="audio-bar-line"></div>
+</div>
+
+<!-- Controlos de reproducción -->
+<div class="card">
+Canción Actual:
+<h1 id="txt_title"></h1>
+<h3 id="txt_time"></h3>
+<button onclick="prevItem()">Prev</button>
+<button onclick="nextItem()">Next</button>
+</div>
+
+
+<!-- Lista de Temas Dinámica -->
+<div class="card playlist">
+-- no songs --
+</div>
+<script>
+let A_songs = [
+{
+"title": "Titulo 1",
+"time": "03:22:20",
+"img": "https://picsum.photos/id/10/200/300&quot,
+"audio": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3&quot,
+"artist": "Artista 1"
+},
+{
+"title": "Titulo 2",
+"time": "03:22:20",
+"img": "https://picsum.photos/id/11/200/300&quot;,
+"audio": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3&quot;,
+"artist": "Artista 2"
+},
+// ... otros temas ...
+];
+
+
+// Manejo de las barras de audio
+const audio = document.querySelector('audio');
+const audioBar = document.querySelector('.audio-bar .audio-bar-line');
+
+audio.addEventListener('timeupdate', () => {
+let currentTime = audio.currentTime;
+let duration = audio.duration;
+
+// Script para actualizar la barra de progreso
+
+});
+</script>
+</body>
+</html>
