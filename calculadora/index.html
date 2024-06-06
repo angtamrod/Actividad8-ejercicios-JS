@@ -4,26 +4,107 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+
+    <style>
+*{
+    margin:0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    display: flex;
+    margin-top: 20px;
+    flex-direction: column;
+    align-items: center;
+    max-width: 100vw;
+    min-height: 100vh;
+    gap: 10px;
+    font-family: monospace;
+
+
+}
+
+.formulario{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    
+    background-color: orange;
+    width: 30%;
+    gap: 10px;
+    height: 70%;
+    padding: 20px;
+    border-radius: 20%;
+    
+}
+
+.formulario__input{
+    border: dashed black;
+    border-radius: 5%;
+    font-family: monospace;
+}
+
+.botones{
+    display:flex;
+    gap: 3px;
+}
+
+.botones__button{
+    width: 40px;
+    height: 40px;
+    border: solid gray 3px;
+    border-radius: 10%;
+    background-color: ghostwhite;
+}
+
+.botones2{
+    display: flex;
+    gap: 20%;
+    width: 70%;
+    
+}
+.botones2__button{
+    width: 50%;
+    
+    background-color: black;
+    color: white;
+    border-radius: 30%;
+   
+}
+
+.resultado{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 2rem;
+}
+
+    </style>
 </head>
 <body>
-<form>
-    <input type="number" id="num1" placeholder="Primer número"> 
-    <input type="number" id="num2" placeholder="Primer número">
-    
-   
-    <button type="button" id="btnSuma">+</button>
-    <button type="button" id="btnResta">-</button>
-    <button type="button" id="btnMultiplica">x</button>
-    <button type="button" id="btnDivide">/</button>
-    <button type="button" id="btnParOImpar">Par O Impar</button>
-    <button type="button" id="btnBorrar">Borrar</button>
-    
-    
+<h1>Calculadora de dos inputs</h1>
 
+<form class="formulario">
+    
+    <input type="number"   class="formulario__input" id="num1" placeholder="Primer número"> 
+    <input type="number" class="formulario__input" id="num2" placeholder="Segundo número">
+    
+   <div class="botones">
+    <button type="button" class="botones__button" id="btnSuma">+</button>
+    <button type="button" class="botones__button" id="btnResta">-</button>
+    <button type="button" class="botones__button" id="btnMultiplica">x</button>
+    <button type="button" class="botones__button" id="btnDivide">/</button>
+    </div>
+    <div class="botones2">
+    <button type="button" class="botones2__button" id="btnParOImpar">Par O Impar</button>
+    <button type="button" class="botones2__button" id="btnBorrar">Borrar</button>
+   </div>  
 </form>
-
-<h3>Resultado</h3>
-<div class="resultado" id="resultado">0</div>
+<div class="resultado">
+    <h3>Resultado</h3>
+    <div id="resultado">0</div>
+</div>
 
     <script>
 
@@ -85,8 +166,24 @@
 
         const miBotonBorra = document.querySelector("#btnBorrar");
             miBotonBorra.addEventListener("click", () => {
-                resultado = 0
+                resultado = 0;
                 verTotal(resultado);
+            }
+        );
+
+        const miBotonParOImpar = document.querySelector("#btnParOImpar");
+            miBotonParOImpar.addEventListener("click", () => {
+             verTotal();   
+            if(typeof resultado%2 == NaN){
+                return "Valor invalido";
+            }
+
+            if(resultado % 2 === 0){
+                respuesta = `El numero ${resultado} es PAR`;
+            }else{
+                respuesta = `El numero ${resultado} es IMPAR`;
+            }
+            verParOImpar(respuesta);
             }
         );
 
@@ -94,12 +191,16 @@
         
 
         function obtenerValores(){
-            valor1 = parseFloat (input1.value);
-            valor2 = parseFloat (input2.value);
+            valor1 = parseFloat (input1.value); //Para que no tome el value (valor del input) como string(texto)
+            valor2 = parseFloat (input2.value); // En concreto es para números flotantes (Números decimales) no enteros 
         }
 
         function verTotal() {
             divResultado.innerHTML= resultado;
+        }
+
+        function verParOImpar() {
+            divResultado.innerHTML= respuesta;
         }
 
 obtenerValores;
